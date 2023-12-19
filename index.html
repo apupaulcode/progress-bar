@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Bound</title>
+    <style>
+        *,*::before,*::after{
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .progress{
+            position: relative;
+            width: 500px;
+            height: 3em;
+            background-color:#111;
+            border-radius: 1.5em;
+            color: white;
+            overflow: hidden;
+        }
+        .progress::before{
+            content: attr(data-lable);
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: .5em;
+            left: .5em;
+            bottom: .5em;          
+            width:10%;
+            min-width: 2rem;
+            max-width: calc(100%-1em);
+            background-color: #069; 
+            padding: 1em;
+            border-radius: 1em;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="progress" id="progress" data-lable="Loading...."></div>
+    <button onclick="move()">click</button>
+    <script>
+        var i = 0;
+        function move() {
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("progress");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+                elem.style.width = width + "%";
+              }
+            }
+          }
+        }
+        </script>
+</body>
+</html>
